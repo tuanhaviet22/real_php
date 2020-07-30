@@ -25,18 +25,25 @@ class Database {
         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $rows: [];
     }
-
+    public function runQuery($query){
+        if (!empty($query)){
+            $this->pdo->query($query);
+        }else{
+            return false;
+        }
+    }
     public function create($table, $params) {
         $sql='INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('", "', $params) . '")';
-//        var_dump($sql);die;
         $this->pdo->query($sql);
     }
-    public function update($table, $id, $data) {
-        $sql = "UPDATE $table SET $data WHERE `id` = :id";
-        $stm = $this->pdo->prepare($sql);
-        $status = $stm->execute();
-        return $status;
-    }
+//    public function update($table, $id, $data) {
+//        $string = print_r($data);
+//        $sql = "UPDATE $table SET $string  WHERE `id` = :id";
+//        var_dump($sql);die;
+//        $stm = $this->pdo->prepare($sql);
+//        $status = $stm->execute();
+//        return $status;
+//    }
     /**
      * @param $table
      * @param $id

@@ -63,7 +63,6 @@ function home_base_url(){
 
 
     return $base_url;
-
 }
 
 
