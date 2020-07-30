@@ -11,6 +11,7 @@ class HomeController{
         if(empty($page)){
             $product = $this->db->readAll('product');
             $category = $this->db->readAll('category');
+            $title = "Trang chủ";
             require "view/home.php";
         }else{
             switch ($page){
@@ -27,6 +28,7 @@ class HomeController{
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         $product = $this->db->getById('product',$id);
         $category = $this->db->readAll('category');
+        $title = $product['name'];
         require 'view/detail-product.php';
     }
 }
