@@ -25,9 +25,15 @@ class Database {
         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $rows: [];
     }
+    public function _getById($table,$column,$id){
+        $stm = $this->pdo->prepare('SELECT * FROM '.$table . ' where '.$column .'=' ."'". $id . "'");
+        $success = $stm->execute();
+        $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($success) ? $rows: [];
+    }
     public function runQuery($query){
         if (!empty($query)){
-            $this->pdo->query($query);
+            return $this->pdo->query($query);
         }else{
             return false;
         }
@@ -63,5 +69,14 @@ class Database {
         }else{
             return $this->create($table, $data);
         }
+    }
+
+    public function search($param)
+    {
+        $sql = "select * from product where name like '%$param%'";
+        $stm = $this->pdo->prepare($sql);
+        $status = $stm->execute();
+        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return ($status) ? $row: [];
     }
 }

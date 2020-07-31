@@ -9,7 +9,11 @@ class AdminController{
     function index(){
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
         if (empty($page)){
-            require "../admin/dashboard.php";
+            if(isset($_SESSION['admin']) && !empty($_SESSION['admin'])){
+                require "../admin/dashboard.php";
+            }else{
+                require "../admin/login.php";
+            }
         }else{
             switch ($page){
                 case ($page === 'product'):
@@ -18,7 +22,15 @@ class AdminController{
                 case ($page === 'category'):
                     $this->loadViewCategory();
                     break;
-
+                case ($page === 'order'):
+                    $this->loadViewOrder();
+                    break;
+                case ($page === 'login'):
+                    $this->loginAdmin();
+                    break;
+                case ($page === 'logout'):
+                    $this->logoutAdmin();
+                    break;
             }
         }
 
@@ -188,5 +200,41 @@ class AdminController{
         }else{
 //            Xoa khong thanh cong
         }
+    }
+
+    private function loginAdmin()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if ($username == "admin" && $password == "123456789"){
+            $_SESSION['admin'] = true;
+            header('Location: '.home_base_url().'admin');
+        }
+    }
+
+    private function logoutAdmin()
+    {
+        $_SESSION['admin'] = null;
+        header('Location: '.home_base_url().'admin');
+    }
+
+    private function loadViewOrder()
+    {
+        $method = filter_input(INPUT_GET, 'method', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (empty($method)){
+            $data = $this->db->readAll('order_product');
+            foreach ($data as $key => $item){
+                $id_user = $item['user_id'];
+                $name = $this->db->getById('user',$id_user)['username'];
+                $data[$key]['name_user'] = $name;
+            }
+            require '../admin/order.php';
+        }else{
+            $id = $_GET['id'];
+            $this->db->delete('order_product',$id);
+            header('Location: '.home_base_url().'admin/index.php?page=order');
+            die;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 // Init
+session_start();
 $config = require 'config.php';
 require "model/Database.php";
 require "controller/HomeController.php";

@@ -8,7 +8,7 @@
                 <ul class=" p-4">
                         <?php foreach ($category as $cate): ?>
                             <li>
-                                <a href="#"><?=$cate['name']?></a>
+                                <a href="<?=home_base_url()."index.php?page=category&id=".$cate['id']?>"><?=$cate['name']?></a>
                             </li>
                         <?php endforeach; ?>
                 </ul>

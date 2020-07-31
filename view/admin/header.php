@@ -18,7 +18,7 @@
 <!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Đăng xuất</a>
+            <a class="nav-link" href="<?=home_base_url().'admin/index.php?page=logout'?>">Đăng xuất</a>
         </li>
     </ul>
 </nav>
@@ -35,9 +35,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?=home_base_url().'admin/index.php?page=order'?>">
                             <span data-feather="file"></span>
-                            Orders
+                            Đơn hàng
                         </a>
                     </li>
                     <li class="nav-item">
@@ -50,12 +50,6 @@
                         <a class="nav-link" href="#">
                             <span data-feather="users"></span>
                             Customers
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
                         </a>
                     </li>
                     <li class="nav-item">

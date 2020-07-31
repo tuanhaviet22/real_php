@@ -19,7 +19,7 @@
                         <p>Mô tả sản phẩm : <?=$product['description']?></p>
 
                         <div>
-                            <button type="button" class="btn btn-info">Thêm vào giỏ hàng</button>
+                            <button type="button" class="btn btn-info add-cart" data-name="<?=$product['name']?>" data-id="<?=$product['id']?>">Thêm vào giỏ hàng</button>
                         </div>
                 </div>
             </div>
