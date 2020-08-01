@@ -1,5 +1,5 @@
 # real_php
-PHP MVC + MySql
+PHP + MySql
 
 ### Setup 
 Change config database in config.php
