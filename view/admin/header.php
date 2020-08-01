@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=home_base_url().'admin/index.php?page=order'?>">
+                        <a class="nav-link <?=($page === "order") ? "active" : ""?>" href="<?=home_base_url().'admin/index.php?page=order'?>">
                             <span data-feather="file"></span>
                             Đơn hàng
                         </a>
@@ -47,9 +47,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link <?=($page === "customer") ? "active" : ""?>" href="<?=home_base_url().'admin/index.php?page=customer'?>">
                             <span data-feather="users"></span>
-                            Customers
+                            Danh sách user
                         </a>
                     </li>
                     <li class="nav-item">

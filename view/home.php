@@ -34,6 +34,18 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <?php if(isset($totalpage)): ?>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <?php for ($i =1;$i <= $totalpage; $i++):
+                                            ?>
+                                            <li class="page-item">
+                                                <a class="page-link" href="<?=home_base_url().'index.php?limit='.$i?>"><?=$i?></a>
+                                            </li>
+                                        <?php endfor; ?>
+                                    </ul>
+                                </nav>
+                            <?php endif; ?>
                         </div>
                     <?php else: ?>
                         <h3 class="text-center mb-3">Không có sản phẩm</h3>
